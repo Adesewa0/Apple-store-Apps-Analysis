@@ -1,0 +1,2129 @@
+﻿1. Introduction
+
+This project aims to identify the types of apps that attract more users.
+To reach this objective we will need to collect and analyze data about mobile apps available on App Store.
+
+2. Exploring the dataset content
+
+We will use the IOS App store existing dataset for this project, the App Store contains 7197 data rows and 16 columns, and the data was collected in July 2017. The dataset can be downloaded directly from this link[https://www.kaggle.com/datasets/ramamet4/app-store-apple-data-set-10k-apps]
+
+The dataset was opened and explored using Microsoft Excel office, and several variables were noticed including those not needed for this analysis. And from looking around it can be concluded that the needed variables or columns for this analysis are 'track name, price, rating count total, rating count version, user ratings, and prime genre'.
+
+3. Data cleaning
+
+Before the analysis was carried out, we need to make sure there are no wrong information or mistakes in the data to avoid making wrong conclusions in the analysis.
+
+Some of the tasks checked and carried out include the following:
+
+- duplicate data
+- non-English app names
+- paid and free apps
+- inaccurate data ( data with different numbers of columns)
+
+After careful scrolling and checking of the dataset, the tasks that were carried out include:
+ 
+- Removal of duplicate data
+- Removal of Non-English app names
+- Separation of paid and free apps
+- Removal of Inaccurate data ( data with wrong column data)
+
+After the removal of inaccurate data from the dataset, there were duplicate entries that were otherwise not noticed upon scanning for duplicate rows initially, 13 duplicate rows were removed from the dataset.
+
+Another point to note for the duplicated rows is that the rows deleted are lesser or equal to the rating count total.
+
+After cleaning, the total is now 6096 of which the total data for free apps is now 3172 and that of paid apps is 2923.
+
+4. Analyzing Datasets
+
+First we'll analyze the free apps first then later paid apps.
+
+1. Analyzing the most common app by Genre
+
+The goal of this project is to identify the types of apps that attract more users. Let's begin the analysis by getting a sense of what are the most common genres for each market.
+
+For this, we'll need to build pivot tables for a few columns in our data sets.
+Starting by looking into the prime genre column
+
+The prime genres we are working with has distinct values of 23 namely; 
+Genre			count		percentage
+- Book			13		0.41%
+- Business		17		0.54%		
+- Catalogs		4		0.13%
+- Education		118		3.72%
+- Entertainment		253		7.98%
+- Finance		32		1.01%
+- Food & Drink		24		0.76%
+- Games			1858		58.58%	
+- Health & Fitness	64		2.02%
+- Lifestyle		51		1.61%
+- Medical		5		0.16%
+- Music			65		2.05%
+- Navigation		6		0.19%
+- News			40		1.26%
+- Photo & Video		160		5.04%
+- Productivity		55		1.73%
+- Reference		17		0.54%
+- Shopping		80		2.52%		
+- Social Networking	101		3.18%
+- Sports		67		2.11%
+- Travel		38		1.20%
+- Utilities		77		2.43%
+- Weather		27		0.85%
+
+Analyzing further the count table generated from the prime_genre column of the App Store data set, we can take the following conclusions:
+
+> The most popular genre is Games with a count of 1858 and 58.58% which takes up more than half of the dataset.
+> The following common genre after games are Entertainment, photo & video, Education and Social Networking with 253(7.98%), 160(5.04%), 118(3.72%) and 101(3.18%) respectively.
+> From the most common genres noticed, we can deduce that the majority of the apps are used for entertainment (i.e games, sports, photo and video, entertainment, social networking...) and not educational (education, books, lifestyle, utilities, productivity...)
+
+- This genre analysis shows so many things but it doesn't show so many more even though the most common genre is games does it have the most users?
+
+2. Most common app using Genre and user number 
+Let's get an idea about the kind of apps with the most users which can be done by calculating the average number of installs of each app genre using the rating count total column.
+
+Row Labels			Average of rating_count_tot
+Book				42816.84615
+Business			7491.117647
+Catalogs			4004
+Education			7003.983051
+Entertainment			14059.88933
+Finance				35400.65625
+Food & Drink			36078.66667
+Games				22920.86545
+Health & Fitness		23661.92188
+Lifestyle			16485.76471
+Medical				734.4
+Music				58205.03077
+Navigation			86090.33333
+News				22823.3
+Photo & Video			28441.54375
+Productivity			21402.8
+Reference			79350.47059
+Shopping			28179.4375
+Social Networking		74704.84158
+Sports				23686.83582
+Travel				29721.07895
+Utilities			19649.7013
+Weather				54215.2963
+
+Grand Total			25160.92528
+	
+Navigation has the most user rating average	
+On average, Navigation apps have the highest rating count total, followed by Reference, Social Networking, Music, and Weather
+Let us look inside each high app genre to see what types of app is being downloaded more starting with navigation data information and see what apps inside this genre versus the numbers of users:
+
+	track_name					rating_count_tot			
+Waze - GPS Navigation, Maps & Real-time Traffic		345046					
+Geocaching®						12811					
+ImmobilienScout24: Real Estate Search in Germany	187					
+Railway Route Search					5					
+CoPilot GPS Car Navigation & Offline Maps		3582					
+Google Maps - Navigation & Transit			154911					
+
+Inside Navigation, we have 2 apps with the biggest part of the users: Waze and Google Maps. People probably learn a lot about traveling and travel a lot to use these apps so much.
+
+			Reference
+
+track_name						rating_count_tot			
+Bible							985920						
+Dictionary.com Dictionary & Thesaurus			200047					
+Dictionary.com Dictionary & Thesaurus for iPad		54175					
+Muslim Pro: Ramadan 2017 Prayer Times, Azan, Quran	18418					
+Merriam-Webster Dictionary				16849					
+Google Translate					26786					
+Night Sky						12122					
+WWDC							762					
+Jishokun-Japanese English Dictionary & Translator	0					
+VPN Express						14					
+F1 2016							17588					
+News Break - Local & World Breaking News & Radio	4693					
+Gemini - A Journey of Two Stars				826					
+Loop & Dot						718					
+SplitMoji						8535					
+Swoopy Space						1497					
+Chunky Tanks						8					
+	
+Inside Reference, we have 2 apps with the biggest part of the users: Bible and Dictionary. Interestingly...
+
+			Social Networking
+track_name					rating_count_tot			
+Facebook					2974676						
+LinkedIn					71856							
+Skype for iPhone				373519							
+Tumblr						334293							
+Match™ - #1 Dating App.			60659							
+WhatsApp Messenger				287589							
+TextNow - Unlimited Text + Calls		164963							
+Grindr 						23201							
+imo video calls and chat			18841						
+Ameba						269							
+Badoo - Meet New People, Chat, Socialize.	34428						
+Kik						260965						
+Qzone						1649						
+Fake-A-Location Free 				354						
+Tango - Free Video Call, Voice, and Chat		75412						
+MeetMe - Chat and Meet New People		97072						
+SimSimi						23530						
+Viber Messenger – Text & Call			164249						
+Find My Family, Friends & iPhone 		43877						
+Weibo HD					16772						
+POF - Best Dating App for Conversations		52642						
+GroupMe						28260						
+Lobi						36						
+WeChat						34584						
+ooVoo – Free Video Call, Text, and Voice	177501						
+Pinterest					1061624						
+Qzone HD					458						
+Skype for iPad					60163						
+LINE						11437						
+LOVOO - Dating Chat				1985						
+Messenger					351466						
+eHarmony™ Dating App - Meet Singles		11124						
+YouNow: Live Stream Video Chat			12079						
+Cougar Dating & Life Style App 			213						
+Battlefield™ Companion			689						
+Whisper - Share, Express, Meet			39819						
+We Heart It - 					90414						
+Followers - Social Analytics For Instagram	112778						
+InsTrack for Instagram - Analytics Plus More	85535						
+Followers + for Instagram - Follower Analytics	28633						
+Timehop						49510						
+Repost for Instagram				15185						
+LINE PLAY - Your Avatar World			34677						
+Nextdoor					14402						
+Hangouts					36404						
+FollowMeter for Instagram 			11976						
+Telegram Messenger				7573						
+Chatous - Chat with new people			1609						
+QQ International				274						
+FireChat					1037						
+Jodel						1193						
+Wishbone - Compare Anything			20649						
+Zenly - Locate your friends in realtime		427						
+Tantan						235						
+Flinch - Video Chat Staring Contest		2134						
+botman - Real time video chat			7						
+Marco Polo Video Walkie Talkie			27662						
+After School - Funny Anonymous School News	18482						
+Highrise - Your Avatar Community		2011						
+Quick Reposter 					17694						
+Kiwi - Q&A					1538						
+Periscope 					6062						
+Inke—Broadcast an amazing life		147						
+Discord - Chat for Gamers			9152						
+Candid - Speak Your Mind Freely			398						
+Down To Lunch					2535						
+SOMA Messenger					3232						
+Rawr Messenger - Dab your chat			180						
+Popcorn Buzz - Free Group Calls			281						
+Chain						35						
+BestieBox					0						
+Selfeo						366						
+Followers Analysis Tool For Instagram 		4253						
+Hey! VINA 					719						
+PlayStation®Messages				1918						
+WhenToPost					158						
+MATCH ON LINE chat				0						
+Fiesta by Tango - Chat & Meet New People	885						
+Houseparty - Group Video Chat			3991						
+All Devices for WhatsApp - Messenger for iPad	682						
+Peach — share vividly				727						
+bit-tube - Live Stream Video Chat		0						
+SoundCloud Pulse: for creators			240						
+IAmNaughty 					463						
+League of Legends Friends			420						
+GhostCodes - a discovery app for Snapchat	1313						
+live.ly - live video streaming			4145						
+Live.me 					14724						
+BOO! 						1805						
+Google Allo — smart messaging			862						
+Google Duo - simple video calling		1033						
+Chat for Whatsapp - iPad Version		5060						
+Arthur's Adventures-Road of Glory		500						
+Rubin.io					0						
+LINE Moments - Capture Your Fun Moments		13914						
+Fitness Girl - Dance and Play at the Gym	3060						
+BoycottTrump					0						
+VanDammemoji by Jean-Claude Van Damme		53						
+My Diary 					39						
+Survivalcraft 2					279						
+
+Inside Social Networking, we have 2 apps with the biggest part of users: Facebook, and Pinterest. These apps are for entertainment purposes...
+
+Still looking into the apps with the most users, Music, and weather are next.
+
+Music
+
+track_name					rating_count_tot
+Pandora - Music & Radio				1126879
+Shazam 						402925
+iHeartRadio  Free Music & Radio Stations	293228
+Deezer 						4677
+Sonos Controller				48905
+NRJ Radio					38
+radio Der Radioplayer				64
+Spotify Music					878563
+SoundCloud - Music & Audio			135744
+Sing Karaoke Songs Unlimited with StarMaker	26227
+SoundHound Song Search & Music Player		82602
+Ringtones for iPhone & Ringtone Maker		25403
+Coach Guitar 					2416
+TuneIn Radio					110420
+Magic Piano by Smule				131695
+The Singing Machine Mobile Karaoke App		130
+Bandsintown Concerts				30845
+PetitLyrics					0
+edjing Mix:					13580
+Smule Sing!					119316
+Amazon Music					106235
+AutoRap by Smule				18202
+My Mixtapez Music				26286
+Certified Mixtapes				9975
+Karaoke - Sing Karaoke, Unlimited Songs!	28606
+Napster - Top Music & Radio			14268
+Musi - Unlimited Music For YouTube		25193
+UE BOOM						612
+Spinrilla - Mixtapes For Free			15053
+Google Play Music				10118
+Piano						1636
+Bose SoundTouch					3687
+DatPiff						2815
+Sounds app - Music And Friends			5126
+Smart Music: Streaming Videos and Radio		17
+Free Piano app by Yokee				13016
+Simple Radio - Live AM & FM Radio Stations	4787
+Trebel Music - Unlimited Music Downloader	2570
+TIDAL						7398
+Acapella from PicPlayPost			2487
+Medly - Music Maker				933
+Amazon Alexa					3018
+Music Freedom					1246
+PlayGround • Music At Your Fingertips		150
+Musical Video Maker 				320
+Free Music Play - Mp3 Streamer & Player		2496
+LiveMixtapes					555
+AmpMe - A Portable Social Party Music Speaker	1047
+NOISE						355
+YouTube Music					7109
+Ringtones for iPhone with Ringtone Maker	4013
+Music Memos					909
+Musicloud 					2211
+Bose Connect					915
+Cloud Music Player 				319
+Remixlive - Remix loops with pads		288
+Free Music					46
+Boom: Best Equalizer & Magical Surround Sound	1375
+MP3 Music Player & Streamer for Clouds		329
+Nicki Minaj: The Empire				5196	
+SongFlip - Free Music Streamer			5004
+Blocs Wave - Make & Record Music		158
+Music and Chill					135
+Free Music					13443
+BOSS Tuner					13
+
+Inside Music, we have 2 apps with the biggest part of users: Pandora, and Spotify. These apps are for entertainment purposes...
+
+Last but not least weather...
+
+track_name					rating_count_tot
+WeatherBug					188583
+The Weather Channel				495626
+AccuWeather - Weather for Life			144214
+MyRadar NOAA Weather Radar Forecast		150158
+The Weather Channel App for iPad 		208648
+Yurekuru Call					53
+QuakeFeed Earthquake Map, Alerts, and News	6081
+Moji Weather - Free Weather Forecast		2333
+FEMA						128
+Yahoo!						0
+Weather Underground				49192
+JaxReady					22
+Hurricane Tracker WESH 2 			203
+Hurricane by American Red Cross			1158
+Weather & Radar					37
+WRAL Weather Alert				25
+Yahoo Weather					112603
+Weather Live Free - Weather Forecast & Alerts	35702
+NOAA Weather Radar 				45696
+iWeather - World weather forecast		80
+Almanac Long-Range Weather Forecast		12
+TodayAir					0
+Weather - Radar - Storm with Morecast App	78
+Storm Radar					22792
+WarnWetter					0
+Forecast Bar					375
+Freddy the Frogcaster's Weather Station		14
+
+The weather app, the 2 apps with the biggest part of the users: the weather channel, and the Weather bug. These apps are for awareness purposes...
+
+The conclusion from these inside views of the app is that, 
+
+Apps that help navigate and help to be a guide are in demand and cannot be looked away from
+Spirituality and the mental state of people are of high interest to them
+Apps that help people meet new and old friends are also in high demand 
+also, apps that can help locate current and good music for users will be highly in demand 
+For the weather, I can only say that it's to plan, an accurate weather teller will be in demand always.
+
+
+For Paid Apps,
+1.  Analyzing the most common app by Genre
+
+The aim of the analysis is still the same with free apps.
+Looking into the genre of paid apps...
+
+Prime Genre	Count of prime_genre	percentages
+Book			42		1.44%
+Business		36		1.23%
+Catalogs		1		0.03%
+Education		290		9.92%
+Entertainment		189		6.46%
+Finance			13		0.44%
+Food & Drink		17		0.58%
+Games			1498		51.23%
+Health & Fitness	97		3.32%
+Lifestyle		48		1.64%
+Medical			15		0.51%
+Music			68		2.33%
+Navigation		22		0.75%
+News			14		0.48%
+Photo & Video		181		6.19%
+Productivity		112		3.83%
+Reference		36		1.23%
+Shopping		1		0.03%
+Social Networking	20		0.68%
+Sports			35		1.20%
+Travel			18		0.62%
+Utilities		131		4.48%
+Weather			40		1.37%
+
+Grand Total		2924		100.00%
+
+Analyzing further the count table and percentages generated from the prime_genre column of the App Store data set, we can take the following conclusions:
+
+> The most popular genre is Games with the count of 1498 and 51.23% which also takes up more than half of the dataset.
+> The following common genre after games are Education, Entertainment, photo & video and utilities with 290(9.92%), 189(6.46%),181(6.19%) and 131(4.48%) respectively.
+> From the most common genres noticed, we can deduce that 3 out of 5 of the apps are used for entertainment (i.e games, sports, photo and video, entertainment, music...) and the remaining two is educational (education, books, lifestyle, utilities, productivity...)
+
+- This genre analysis shows an interestingly difference from the free apps, but then there seems to be something in common like the game for example, it is the most common both free and paid. We'll see the same thing as with free if it has the most users?.
+
+2. Most common app using Genre and user number 
+Let's get an idea about the kind of apps with the most users using our user rating total.
+
+genre		Average rating count total
+Games			6765.351802
+Business		4043.472222
+News			3872.357143
+Weather			3329.375
+Music			2827.323529
+Health & Fitness	2762.731959
+Shopping		2722
+Photo & Video		2531.519337
+Reference		2362.805556
+Productivity		2247.928571
+Entertainment		2183.465608
+Utilities		1336.694656
+Catalogs		1309
+Navigation		1174.590909
+Lifestyle		902.7708333
+Finance			882.8461538
+Travel			665.7222222
+Medical			663.7333333
+Education		644.7896552
+Food & Drink		463.2941176
+Social Networking	393
+Book			312.7857143
+Sports			253.7428571
+
+> Wow, this is so much different from what we had under free apps, games is actually the most paid app on average which means it had more installs and users than all the other app genre.
+> After games we have business, news, weather and music genre to be in line as most rated and installed
+
+Now let's look inside these five genre and see what type of apps are in there.
+
+for Games;
+
+track_name			rating_count_tot
+Fruit Ninja Classic			698516
+Clear Vision (17+)			541693
+Minecraft: Pocket Edition		522012
+Plants vs. Zombies			426463
+Doodle Jump				395261
+Draw Something				360974
+Infinity Blade				326482
+Geometry Dash				266440
+Tiny Wings				219418
+Traffic Rush				213092
+Plants vs. Zombies HD			163598
+Infinity Blade II			153588
+The Room				143908
+Plague Inc.				143285
+Where's My Water?			131656
+Call of Duty: Black Ops Zombies		116601
+Sunday Lawn				107727
+SCRABBLE Premium			105776
+Flick Home Run !			98851
+Terraria				98036
+Scribblenauts Remix			86127
+Zombieville USA 2			79683
+Trivia Crack (No Ads)			77370
+Solitaire by MobilityWare		76720
+Call of Duty: Zombies			63943
+Cut the Rope: Experiments		63272
+Phase 10 Pro - Play Your Friends!	59155
+The Sims 3				54408
+HB2 PLUS				54073
+StickWars				53821
+BATTLE BEARS: Zombies!			50710
+Slayin					45574
+Ski Safari				45121
+Lane Splitter				44567
+Bloons TD 5				42078
+Fieldrunners				41633
+Super Stickman Golf			41446
+Cat Physics				40552
+SCRABBLE Premium for iPad		39678
+Infinity Blade III			37673
+Flick Kick Field Goal			36946
+The Room Two				36809
+Hotel Dash Deluxe			36190
+Cartoon Wars				35930
+Doodle Godâ„¢				35759
+Touchgrind				35735
+Gravity Guy				35161
+Multiplayer for Minecraft PE		35109
+Sally's Spa				35074
+Goat Simulator				34819
+iSlash					33868
+Zombieville USA				32988
+Grand Theft Auto: San Andreas		32533
+Crash Bandicoot Nitro Kart 3D		31456
+Lep's World Plus 			30830
+Legendary Wars				29739
+A Dark Room				29540
+Rat On A Skateboard			28672
+Bloons TD 5 HD				28341
+Temple Run: Brave			27593
+Five Nights at Freddy's			27388
+Bike Race Pro 				26881
+Trenches				26732
+Grand Theft Auto III			26547
+MONOPOLY Game				26482
+Eden - World Builder			26419
+Rayman Jungle Run			25517
+Monument Valley				24909
+Real Steel				24880
+Where's My Perry?			24314
+Osmos for iPad				24306
+The Room Three				23878
+Crush the Castle			23810
+Modern Combat 3: Fallen Nation		23766
+Moto X Mayhem				22557
+Offroad Legends				22281
+Robot Unicorn Attack			22150
+NBA JAM by EA SPORTSâ„¢			21648
+Peggle Classic				21416
+Lifeline...				21347
+BADLAND					21325
+PAC-MAN Premium				21292
+Dice With Buddies			20355
+Blek					20144
+Grand Theft Auto: Vice City		20113
+Survivalcraft				19784
+Sonic The Hedgehog			19621
+Rat On A Scooter XL			19296
+Fish Tycoon				18943
+Virtual Families			18920
+Sky Gamblers: Storm Raiders		18822
+SpongeBob Moves In			18758
+Threes!					18494
+Sudoku					18332
+Carnivores: Dinosaur Hunter Pro		18306
+Reckless Getaway			18259
+Five Nights at Freddy's 2		18107
+The Amazing Spider-Man			17895
+World Cup Table Tennisâ„¢		17776
+Beat the Boss 2 (17+)			17203
+I Dig It				17190
+Harry Potter: Spells			17023
+Wedding Dash Deluxe			16567
+Deemo					15855
+Block Fortress				15430
+Teenage Mutant Ninja Turtles		15398
+Catan					15175
+Grand Theft Auto: Chinatown Wars	15142
+STREET FIGHTER IV			15056
+LIMBO					15030
+Temple Run: Oz				14912
+BATTLE BEARS -1				14910
+Gangstar Rio: City of Saints		14724
+Osmos					14605
+Age of Zombiesâ„¢			14493
+Backbreaker 2: Vengeance		14491
+Duet Game				14407
+Hatchi - A retro virtual pet		14381
+Tank Hero				14361
+Bastion					14247
+Fieldrunners 2				14214
+The Sims 3 Ambitions			14202
+N.O.V.A. 3 				13503
+Carnivores: Ice Age Pro			13258
+Card Wars - Adventure Time Card Game	13245
+Cartoon Wars 2: Heroes			13049
+Modern Combat 4: Zero Hour		12916
+Catapult King				12799
+Seeds Pro For Minecraft 		12770
+Airport Scanner				12701
+Cut the Rope 2				12376
+Doodle Army				12354
+Game Dev Story				12331
+Tiny Wings HD				12181
+Bike Baron				12162
+Optical Inquisitor 17+			12099
+Backflip Madness			11687
+Word Chums				11536
+Kingdom Rush Frontiers HD		11447
+Ice Rage				11190
+Bridge Constructor			11187
+Spider Solitaire by MobilityWare	11154
+True Skate				11065
+Fish Out Of Water!			11000
+Carcassonne				10846
+PewDiePie: Legend of the Brofist	10828
+Super Hexagon				10748
+Pudding Monsters			10703
+Chess Pro - with coach			10619
+Cover Orange 2: Journey			10604
+Sprinkle				10509
+Clear Vision 2				10477
+LEGO Harry Potter: Years 1-4		10463
+Catan HD				10382
+Skip-Boâ„¢ Pro				10239
+Attack the Light 			10132
+Flick Golf!				9948
+The Impossible Game			9885
+Five Nights at Freddy's 3		9876
+Worms 2: Armageddon			9870
+All-in-1 Logic GameBox			9854
+Red Ball 4				9818
+Dude Perfect				9763
+Drop Flip				9752
+The Sims 3 World Adventures		9744
+STREET FIGHTER IV VOLT			9741
+Parking Mania				9657
+Heads Up!				9567
+Snail Bob				9453
+Sonic the Hedgehog 2			9405
+Mad Skills Motocross			9341
+Muffin Knight				9302
+Monkey Preschool Lunchbox		9286
+Dragon Island Blue			9119
+Call of DutyÂ®: Strike Team		9097
+Ridiculous Fishing			9095
+Cut the Rope: Time Travel		9003
+SimplePhysics				8981
+The Amazing Spider-Man 2		8843
+Star WarsÂ®				8767
+Sushi Cat				8718
+Hitman GO				8673
+Sonic Jumpâ„¢				8661
+Junk Jack Retro				8632
+Doodle Jump HD				8580
+Granny Smith				8568
+TETRISÂ®				8480
+Hitman Sniper				8452
+Lep's World 2 Plus			8404
+Bloons TD 4				8304
+Shanghai Mahjong			8253
+IMPOSSIBLE ROAD				8249
+MONOPOLY for iPad			8165
+Chess Pro with Coach 			8138
+Unblock Me				7973
+Bloons TD				7941
+Cytus					7925
+Machinarium				7919
+Ms. PAC-MAN				7885
+Alto's Adventure			7824
+Super Sharp				7776
+LEGO Batman: DC Super Heroes		7717
+The Price is Rightâ„¢ Decades		7693
+Midway Arcade				7639
+Shades: A Simple Puzzle Game		7598
+10 Pin Shuffle Pro Bowling		7315
+Need for Speedâ„¢ Most Wanted		7315
+Flick Champions HD			7289
+Infinite Flight - Flight Simulator	7100
+Multiplayer Terraria edition		6981
+Earn to Die				6977
+Junk Jack				6891
+Battleheart				6879
+Spider:  The Secret of Bryce Manor	6780
+Leo's Fortune				6776
+Deus Ex: The Fall			6764
+Tobuscus Adventures: Wizards		6741
+Death Worm				6527
+Lara Croft GO				6431
+Kingdom Rush Frontiers			6419
+F-Sim Space Shuttle			6403
+FreeCell				6340
+Pocket God: Journey To Uranus		6278
+Kingdom Rush Origins HD			6209
+Shadowmatic				6136
+Lumino City				6097
+2XL Supercross				6093
+FINAL FANTASY				6091
+Resident Evil 4: PLATINUM		6046
+Plug for Minecraft PE			5969
+World Of Navy Ships			5956
+Call of Duty: Zombies HD		5853
+Cake Doodle				5803
+hocus.					5778
+WORMS					5758
+Sonic The Hedgehog 4â„¢ Episode II	5606
+RGB Express - Mini Truck Puzzle		5575
+Breach & Clear				5513
+Dragon Hills				5508
+Five Nights at Freddys 4		5478
+Pocket Tanks Deluxe			5452
+LEGO Harry Potter: Years 5-7		5435
+Civilization Revolution 2		5416
+Sudoku					5397
+Superbrothers: Sword & Sworcery EP	5362
+Hunter Island: Monsters & Dragons	5305
+Slender Rising				5214
+FINAL FANTASY TACTICS			5180
+Radiation Island			5148
+Pako - Car Chase Simulator		5115
+Rayman Fiesta Run			5078
+Need for Speedâ„¢ Hot Pursuit		5059
+Jelly Defense				5058
+AVP: Evolution				4996
+Warhammer Quest				4965
+NBA JAM by EA SPORTSâ„¢ for iPad	4934
+MASH					4913
+Ticket to Ride				4866
+Surgeon Simulator			4820
+Tap the Frog				4802
+Sonic The Hedgehog 4â„¢ Episode I	4755
+The Bard's Tale				4746
+Lep's World 3 Plus 			4678
+World of Goo				4675
+F18 Carrier Landing			4656
+Chameleon Run				4580
+FINAL FANTASY IV			4558
+Canabalt				4540
+SHADOWGUN				4513
+Ricky Carmichael's Motocross Matchup	4498
+R.B.I. Baseball 14			4459
+Vector for iPhone			4432
+Worms3					4422
+Dungeon Raid				4401
+Neuroshima Hex				4378
+Oceanhorn â„¢				4336
+Lifeline: Whiteout			4327
+Rebuild					4095
+Slingo Supreme HD			4094
+Jet Car Stunts				4088
+Mini Metro				4064
+Minecraft: Skin Studio			4006
+Exploding KittensÂ			3980
+DOOM Classic				3970
+Dictator: Revolt			3939
+Peggle Classic HD			3912
+Kingdom Rush Origins			3898
+Riptide GP				3883
+Machine World				3875
+FTL: Faster Than Light			3832
+Joe Danger				3748
+Progress to 100				3746
+Don't Starve: Pocket Edition		3742
+Pinball Arcade Plus			3716
+Monster Craft GO			3711
+Ski Safari: Adventure Time		3699
+God of Light				3542
+Dark Echo				3542
+Rubik'sÂ® Cube				3531
+EPOCH.2					3525
+Assassin's Creed Identity		3517
+Space Marshals				3515
+Star Command				3473
+TETRISÂ® for iPad			3464
+Drift Mania Championship		3432
+Organ Trail: Director's Cut		3389
+Battleheart Legacy			3376
+Riptide GP2				3311
+Blocky Roads				3282
+Cut the Rope: Magic			3229
+Slingshot Racing			3189
+Touchgrind BMX				3170
+Minigore 2: Zombies			3164
+Battle Supremacy			3124
+MEGA MAN X				3099
+Neo Monsters				3093
+Mutant Fridge Mayhem  			3090
+Earn to Die 2				3072
+Infectonator				3069
+Crash Bandicoot Nitro Kart 2		3064
+Goat Simulator GoatZ			3035
+Star Warsâ„¢ Pinball 5			3025
+Reigns					3017
+FINAL FANTASY VI			2998
+Sprinkle Islands			2972
+Warhammer 40,000: Deathwatch		2917
+INKS.					2869
+XCOMÂ®: Enemy Within			2855
+Where's My Mickey?			2846
+Love You To Bits			2833
+Colossatron: Massive World Threat	2817
+Touchgrind Skate 2			2816
+METAL SLUG 3				2798
+Stray Dog Simulator			2781
+SimplePlanes				2767
+The World Ends with You: Solo Remix	2760
+Ultimate Wolf Simulator			2737
+Liliâ„¢					2701
+Farming Simulator 16			2637
+Infect Them All 2 : Zombies		2630
+My Virtual Girlfriend			2609
+AirCoaster - Roller Coaster Builder	2602
+First Words Animals			2576
+The Trace: Murder Mystery Game		2570
+Tozzle - Toddler's favorite puzzle	2562
+Give It Up!				2560
+s					2552
+Kitty Powers' Matchmaker		2552
+Mad Skills BMX				2547
+Papa's Freezeria HD			2535
+This War of Mine			2523
+Flick Champions Winter Sports		2505
+Teeny Titans 				2503
+Bloons TD 4 HD				2493
+Construction Simulator 2014		2470
+NBA 2K17				2408
+Motorsport Manager			2394
+Glow Puzzle				2374
+Icycle: On Thin Ice			2347
+rop					2318
+Marvel Pinball				2298
+The Game of Life			2298
+Goat Simulator MMO Simulator		2277
+Domino Drop				2272
+Trial Xtreme 2				2254
+Trenches II				2232
+Trainz Driver 				2228
+Max Payne Mobile			2183
+MONSTER HUNTER FREEDOM UNITE for iOS	2170
+Fieldrunners for iPad			2147
+Little Inferno HD			2145
+Flick Home Run ! HD			2144
+Le Havre (The Harbor)			2125
+Weaphones WW2: Firearms Simulator	2122
+Pursuit of Light			2114
+Bloons Super Monkey			2113
+Waking Mars				2101
+Block Earth				2089
+My Om Nom				2074
+The Incident				2070
+Wayward Souls				2061
+LEGOÂ® The Lord of the Ringsâ„¢		2054
+Sporcle					2044
+Skater 					2040
+DEVICE 6				2036
+Earn to Die HD				2028
+Heroes and Castles 2			2027
+Shoot The Zombirds			2007
+The Secret of Grisly Manor		1993
+FINAL FANTASY TACTICS: 			1992
+Goblin Sword				1983
+GeoBee Challenge HD 			1957
+Year Walk				1951
+Gin Rummy Pro				1941
+Elmo Calls				1915
+Out There: Î© Edition			1895
+Stray Cat Simulator			1892
+Block Fortress: War			1889
+Elmo Loves ABCs for iPad		1888
+A Noble Circle				1886
+The 7 Second Challenge			1838
+PetWorld 3D: My Animal Rescue Premium	1815
+WWE 2K					1810
+FINAL FANTASY V				1808
+RollerCoaster TycoonÂ® Classic		1794
+LEGOÂ® Marvel Super Heroes		1784
+Reiner Knizia's Tigris & Euphrates	1777
+Topia World Builder			1775
+D&D Lords of Waterdeep			1772
+Redline Rush				1766
+Octodad: Dadliest Catch			1752
+The Survivor: Rusty Forest		1746
+80 Days					1732
+Crashlands				1721
+Goat Simulator Waste of Space		1709
+Table Tennis Touch			1701
+Haunt the House: Terrortown		1698
+Royal Trouble: Hidden Adventures HD 	1690
+Downwell				1679
+Tentacles: Enter the Dolphin		1678
+Lifeline: Silent Night			1656
+Implosion - Never Lose Hope		1644
+Broken Age â„¢				1641
+Bridge Constructor Playground		1628
+rymdkapsel				1622
+Sid Meier's Pirates!			1618
+Auralux: Constellations			1608
+Papa's Burgeria				1589
+2XL Supercross HD			1588
+Severed					1580
+Puzzle Quest 2				1575
+Space Agency				1565
+Mimpi Dreams				1554
+Pacific Rim				1522
+R.B.I. Baseball 15			1510
+Small World 2				1506
+Blendamaze				1504
+FINAL FANTASY				1502
+Draw Rider Plus				1490
+Jurassic Park: The Game 1 HD		1483
+Weaphones: Firearms Simulator Volume 1	1478
+Devil's Attorney			1474
+Card Crawl				1461
+Grand Theft Auto: Liberty City Stories	1460
+DOOM II RPG				1455
+Baldur's Gate: Enhanced Edition		1454
+Pumped BMX 2				1440
+SimpleRockets				1436
+Polar Plunge 				1428
+FINAL FANTASY VII			1421
+Sunday Lawn Seasons			1420
+The 7th Guest				1419
+Tank Hero: Laser Wars			1418
+Flight!					1411
+Draw a Stickman: EPIC 2			1410
+I am Bread				1394
+The Lost City				1393
+Agent A: A puzzle in disguise		1390
+Deus Ex GO - Puzzle Challenge		1385
+Bean Dreams				1382
+FINAL FANTASY III			1378
+iRagdoll - Ragdoll Physics		1372
+Lifeline 2				1364
+Desert Golfing				1362
+Scribblenauts Unlimited			1350
+Titan Quest				1350
+Virtua Tennis Challenge			1339
+Kinectimals				1336
+RollerCoaster TycoonÂ® 3		1334
+Roofbot: Puzzler On The Roof		1334
+Venture Kid				1333
+To-Fu Fury				1331
+Vector HD				1291
+Banner Saga				1276
+Pandemic: The Board Game		1259
+Duck Life				1257	
+Transistor				1250
+Super Arc Light				1246
+Tiny Guardians				1246
+Guild of Dungeoneering			1232
+Guess The Person? HD			1227
+Thomas Was Alone			1226
+AG Drive				1218
+Growing Pug				1194
+Clay Hunt				1193
+Eagle Simulator				1170
+Pumped: BMX				1164
+Halo: Spartan Strike			1159
+Real Pool 3D				1156
+Family Feudâ„¢ HD			1156
+Minesweeper Classic			1140
+World of Dragons: Dragon Simulator	1138
+Can Knockdown 3				1135
+CUBE SNAP				1133
+ZENFORMS: Protectors			1127
+Geometry Wars 3: Dimensions Evolved	1122
+Math Ninja HD				1121
+Ultimate Fox Simulator			1112
+Offroad Legends 2			1108
+Agricola				1107
+First Words Deluxe			1101
+World Conqueror 3			1094
+Monkey Math School Sunshine		1092
+Castle Raid				1087
+Ultimate Dinosaur Simulator		1079
+twofold inc.				1075
+Bumpy Road				1073
+Octagon 				1072
+Dominos Pro				1072
+R.B.I. Baseball 16			1068
+Piloteer				1059
+UFO on Tape				1058
+Warbits					1051
+Dirt Trackin				1049
+Neon Drive - '80s style arcade game	1046
+Minecraft: Papercraft Studio		1044
+Sumotori Dreams				1036
+aerofly FS - Flight Simulator		1033
+Wildlife Simulator: Wolf		1030
+Pixel Cup Soccer 16			1024
+First Strike 1.3			1016
+Sky Gamblers Air Supremacy		1010
+Dungeon Village				1000
+Secret of Mana				990
+Cooking Academy 2			988
+Farming USA				987
+Xenowerk				978
+Shadow Bug				978
+Cheetah Simulator			976
+FRAMED					971
+Papers, Please				970
+The Ensign				968
+Wild Horse Simulator			961
+"HOOK"					959
+Botanicula				959
+Ultimate Horse Simulator		958
+Panic Drop				953
+Nightgate				947
+Sniper Shooter Pro by Fun Games		945
+Dungelot: Shattered Lands		940
+Forbidden Island			923
+Halo: Spartan Assault			920
+Ski Safari 2				919
+Noodles!				917
+The Greedy Cave				914
+Galaxy Trucker				901
+BADLAND 2				898
+Draw a Stickman: EPIC HD		895
+Papa's Freezeria To Go!			885
+Dust: An Elysian Tail	          	884
+King of Dragon Pass			882
+Real Fishing 3D				880
+Phrase Party!				878
+Able Black				876
+Truck Simulator PRO 2016		875
+Hundreds				873
+Aerofly FS 2 Flight Simulator		863
+Snake Simulator				859
+FINAL FANTASY III for iPad		857
+Castle of Illusion			852
+Stone Age: The Board Game		850
+Patrick Kane's MVP Hockey		849
+Adventure Time Game Wizard 		848
+Jurassic Life				842
+Snow Leopard Simulator			837
+Jumping Horses Champions		835
+Rules!					835
+AJ Jump: Animal Jam Kangaroos!		834
+Infect Them All : Vampires		826
+Scotland Yard				824
+Mutant Mudds				819
+Trick Shot				816
+Ultimate Dragon Simulator		806
+Pacific Fleet				806
+Last Voyage				805
+HeroesÂ® of Might & MagicÂ® III 	800
+Plug Pocketmine for Minecraft PE	770
+Maps Pro For Minecraft PE		768
+Ultimate Lion Simulator			763
+LEGOÂ® Batman: Beyond Gotham		756
+Jumpy Horse Show Jumping		746
+StrategoÂ® Single Player		739
+QWOP for iOS				735
+Block Story Premium			734
+Wheel of Fortune PUZZLE POP		732
+Icebreaker: A Viking Voyage		726
+Doom and Destiny			725
+Death Run 				721
+Real Cake Maker 3D 			721
+Prune					719
+Mystery Case Files: 13th Skull HD 	718
+Til Morning's Light			715
+The Mesh				714
+Oddworld: Stranger's Wrath		713
+realMyst				708
+Furdemption - A Quest For Wings		703
+Tengami					703
+Tomb Raider I				702
+Lost Echo				684
+THE KING OF FIGHTERS '97		681
+Forgotten Memories: Alternate Realities	669
+Sorcery!				662
+Dungeons & Such Treasures		653
+PRISM					648
+Extreme Landings Pro			647
+Beat Stomper				646
+Double Dog 				627
+CHAOS RINGS 				627
+Tikal					626
+niconico ch				625
+Pocket Academy				616
+Machines at War 3 RTS			608
+Race The Sun				602
+LEGOÂ® Jurassic World			602
+Gabbymoji				599
+Rabbids Big Bang			598
+Hero Emblems				597
+"klocki"				587
+Bio Inc. Platinum - Biomedical Plague	573
+Autumn Dynasty Warlords			572
+Papa's Burgeria To Go!			570
+Eyes - the horror game			567
+Lines the Game				563
+Farming PRO 2015			560
+Pull My Tongue				559
+WordÂ²					556
+Hot Springs Story			554
+HoPiKo					553
+Hyperburner				545
+METAL SLUG 1				540
+DEATHSMILES				540
+Tsuro - The Game of the Path		539
+SmartGo Player				533
+IQ Test - Pro Edition			529
+Space Marshals 2			524
+PAC-MAN Championship Edition DX		517
+Transport Tycoon			516
+Door Kickers				515
+The Survival Games 2			514
+Around The World in 80 Days 		513
+Talisman				511
+Lost Within				510
+Beat the Boss 3 (17+)			507
+Sentinels of the Multiverse		505
+Colin McRae Rally			504
+Shadow Blade				503
+Fox Simulator				503
+Virtual Villagers 4: The Tree of Life	500
+Human Resource Machine			497
+ARP ODYSSEi				495
+The LEGOÂ® Movie Video Game		484
+Falcon Simulator			482
+Weaphones: Firearms Simulator Volume 2	481
+SpongeBob: Sponge on the Run		481
+Punch Club				480
+PlayKids Learn 				477
+Panther Simulator			476
+Cooking Academy (Full)			475
+Stay In The Line Pro			474
+Letter Quiz - alphabet tracing for kids	472
+Incredibox				472
+WorldCraft : 3D Build & Craft		468
+MTN					466
+ALONE...				465
+Brothers: A Tale of Two Sons		460
+Wire de Coins 2				459
+Power Hover				458
+Castle Raid 2				452
+Legend of Grimrock			452
+Youtubers Life - Gaming Channel		451
+Jurassic Life: Velociraptor		450
+Last Horizon				450
+TMNT: Brothers Unite			449
+RummikubÂ®				447
+Pumped BMX 3				447
+Huetopia				446
+You Must Build A Boat			444
+Splendorâ„¢				444
+Raiden Legacy				443
+Baby Rattle with Child Lock		441
+Detective Grimoire			439
+Neon Chrome				439
+The Font Game				438
+College Lacrosse 2014			432
+Solitairica				431
+Tasty Planet				430
+Train Driver Journey 4 			429
+Sometimes You Die			428
+Double Dragon Trilogy			427
+The Inner World				425
+Evoland					424
+Blokusâ„¢ â€“ Attack, Block & Defend!	423
+VERSUS: The Lost Ones			423
+METAL SLUG 2				421
+GIFYme - 				421
+DRAGON QUEST				419
+Little Inferno				418
+Griffin Simulator			417
+Burrito Bison				416
+Draw a Stickman: EPIC			413
+Space Age: A Cosmic Adventure		412
+Riptide GP: Renegade			412
+Blackbar				409
+Skullduggery!				409
+Costume Quest				408
+Never Alone: Ki Edition			408
+Papa's Wingeria HD			407
+Snowball Fight 				404
+THE KING OF FIGHTERS '98		401
+LEGOÂ® Friends				400
+Blackthorn Castle			399
+Orca Simulator				397
+Fingle					397
+The Guides				397
+Safari Simulator: Lion			391
+League of Stickmen VIP Edition		391
+Dolphin Simulator			388
+Sword Of Xolan				381
+Evil Minds: Dirty Charades!		380
+Wormsâ„¢ 4				380
+Please, Don't Touch Anything		379
+Battlevoid: Harbinger			374
+Baldur's Gate II:EE			373
+ROME: Total War				373
+Dr. Panda's Restaurant			370
+Wildlife Simulator: Shark		369
+Athletics: Summer Sports 		365
+Swapperoo				361
+Tone Sphere				360
+Ambition: Strategy War Game		360
+Papa's Cupcakeria HD			359
+Abby MonkeyÂ® Basic Skills		358
+Pocket League Story			357
+Monty Python's The Ministry of Silly	356
+Star Knight				354
+FOTONICA				352
+Home - A Unique Horror Adventure	348
+Her Story				346
+Patchwork The Game			346
+60 Seconds! Atomic Adventure		346
+VR Ball for Google Cardboard 		344
+FoodSpect - Restaurant Inspections	343
+LEGO Ninjago: Shadow of Ronin		342
+Jurassic Park: The Game 2 HD		341
+Devious Dungeon 2			335
+Wildlife Simulator: Crocodile		333
+Athletics 2: Summer Sports		333
+Tomb Raider II				330
+Hyena Simulator				327
+Sabertooth Tiger Simulator		323
+Moorhuhn Deluxe - Crazy Chicken		319
+Alice Trapped in Wonderland		317
+Virtual Villagers 5: New Believers	309
+Sputnik Eyes				309
+Ski Jumping Pro				308
+voi					308	
+Sorcery! 2				308
+Battle Supremacy: Evolution		308
+The Walking Dead: Michonne		303
+Beat da Beat				301
+Sneaky Sneaky				300
+Burger Shop				299
+Reckless Racing 3			299
+Feed Me Oil 2				296
+Tiny Rogue				296
+DiveChamp				295
+Polar Bear Simulator			293
+Add-Ons Studio for Minecraft		292
+Cafe Story 				291
+Mancala Pro				289
+Blyss					288
+Rule with an Iron Fish			286
+AutoSleep. Auto Sleep Tracker		284
+MLB Manager 2016			284
+A Brief History of the World		280
+Leap of Fate				280
+Hidden World				279
+Baseball Highlights 2045		278
+Casino Girl				278
+SteamWorld Heist			277
+Hard Time VIP (Prison Sim)		276
+ZOOKEEPER				274
+Cafeteria Nipponica			274
+Lucky Block Mod Survival Game PE	272
+Castles of Mad King Ludwig		272
+Elf PetsÂ® Virtual Reindeer		271
+Artie's Magic Pencil			271
+Atlantic Fleet				271
+A Good Snowman Is Hard To Build		270
+1600					269
+Tasty Planet: Back for Seconds		264
+Sweet Princess Beauty Salon		264
+Rivals for Catan			263
+Owl Simulator				263
+Automatic Call Recorder			263
+The Lost Ship				262
+Bridge Constructor Medieval		262
+Alter Ego				262
+Infinite Tanks				262
+AZZL					261
+Ember					260
+The Martian: Official Game		259
+Galaxy Trucker Pocket			259
+Christmas Stories: Nutcracker 		259
+Sweet Shop				258
+Ultimate Shark Simulator		256
+Jurassic Park: The Game 4 HD		256
+Caterzillar				256
+League of Light: Silent Mountain 	256
+King Tongue				255
+Day of the Tentacle Remastered		255
+[the Sequence]				254
+Ultimate Bird Simulator			254
+The Lost Heir: The Fall of Daria	253
+Buddy & Me				252
+Block Party 				250
+Haunted Manor 				248
+Dreampath - The Two Kingdoms HD		248
+Galactic Nemesis			247
+Crypt of the NecroDancer Pocket Edition	247
+Dirt Racing Mobile 3D			245
+Take Off - The Flight Simulator		244
+HARVEST MOON: Seeds Of Memories		244
+Questerium: Sinister Trinity		243
+EvoCreo - A Monster Capture RPG		242
+Oh...Sir! The Insult Simulator		242
+STREET FIGHTER II COLLECTION		242
+DreamZ - Lucid Dreaming			242
+Plug & Play				238
+Rebuild 3: Gangs of Deadsville		238
+Rusty Lake Hotel			235
+Grim Fandango Remastered		235
+Written Legends: Nightmare at Sea HD	234
+Train Drive ATS				233
+AirAttack 2				229
+Build Your Palace			228
+THE KING OF FIGHTERS-i 2012		228
+The Impossible Quiz! for iPad		227
+BlackOut: Bring the color		226
+Heroki					225
+My Uncrowded				224
+enzo!					220
+SUBURBIA City Building Board Game	217
+Craft The World - Pocket Edition	213
+Electric RC Sim				209
+Partia					209
+Super Slowmo Shooter			208
+Pulling USA				208
+Baby Boss - Care, Dress Up and Play	207
+FFmoji 2016 - Your Fantasy Football	207
+Wolf Craft				206
+BUBBLE BOBBLE DOUBLE			206
+Jade Empireâ„¢: Special Edition		206
+ULTRA4 Offroad Racing			205
+SpongeBob's Game Frenzy			205
+Oddworld: Munch's Oddysee		200
+Star Horizon				200
+Broken Sword 5 - the Serpent's Curse	199
+MUSYNX					197
+SAMURAI SHODOWN II			195
+Zenge					194
+My NBA 2K17				194
+Summer Games 3D				193
+Feed the Head				193
+Aralon: Forge and Flame			192
+Snowboard Party 2			188
+Skateboard Party 2			187
+Clue Solver 				185
+PE Mods 				185
+Stickman Volleyball			184
+Imbroglio				184
+Zodiac: Orcanon Odyssey			184
+Dark Parables: Queen of Sands 		184
+Top Tier				183
+The Hero Project: Redemption Season	183
+Blocko.					182
+Elephant Simulator			181
+2XL Snocross				181
+Fix My Car: Garage Wars 		181
+Findâ€“theâ€“Line			181
+Isabelle Dance Studio			178
+Icewind Dale: Enhanced Edition		177
+Adventure To Fate 			175
+The Secret of Raven Rock		173
+SpongeBob Bubble Party			171
+Sorcery! 3				171
+Sabres of Infinity			169
+Galactic Keep				169
+Formula Cartoon All-Stars 		168
+Sleepy Hollow: Mystery Legends HD 	168
+Banner Saga 2				168
+The Build Battle			167
+Lifeline: Crisis Line			167
+Mini Watch Games 14-in-1		166
+Cartoon Network Superstar Soccer	166
+Thinkrolls Kings & Queens 		166
+Twilight Struggle			166
+Tamagotchi Classic 			165
+DuckTales: Remastered			165
+GAROU: MARK OF THE WOLVES		162
+Swap Sword				161
+Pocket Stables				160
+The Westport Independent		160
+Warhammer 40,000: Regicide		157
+Papa's Cupcakeria To Go!		157
+Odd Bot Out				157
+ROAD -escape game-			156
+The Occupant				155
+Wild Kratts Creature Power		155
+The Lost Treasure			155
+Stony Road				155
+Spider: Rite of the Shrouded Moon	155
+Lost Frontier				153
+The Bug Butcher				153
+Living Legends: Bound by Wishes		153
+Pixel Dungeon				152
+Pewdiebot				151
+Alphabet Aquarium School Adv. Vol 1	150
+Dreii					148
+Adventures of Poco Eco			148
+Dungeons of Chaos UNITY EDITION		148
+Shin Megami Tensei (ENG)		147
+Battlefleet Gothic: Leviathan		147
+Dead Venture				145
+Sushi Go!				145
+Factory Balls				144
+The Tiny Bang Story			143
+Athletics: Winter Sports (Full Version)	142
+The World II Hunting BOSS		141
+sugar, sugar				139
+LEGOÂ® Star Warsâ„¢:  Microfighters	139
+Divide By Sheep				138
+Special Air Wing - Flight Simulator	138
+Hatoful Boyfriend			137
+Rush Rally 2				135
+Prison Life RPG	135
+Tasty Planet: Back for Seconds HD	135
+Mystery Case Files: Key To Ravenhearst 	134
+Adventures of Mana			134
+Farming PRO 2016			133
+That Dragon, Cancer			132
+Game Studio Tycoon 			131
+Shopkins Magazine 			129
+Five Card Quest - Tactical RPG Battles	129
+Jazza's Arty Games			127
+Tormentum - a Point & Click Adventure	127
+BO3 Ultimate Utility for Call of Duty 	127
+Danse Macabre: Lethal Letters - 	127
+Flappy Golf 2				127
+Tomb Journey 				126  
+Flipped OutThe Powerpuff Girls Match 3	124
+SPL-T					124
+Maze: Subject 360 HD - 			123
+Wildlife Simulator: Bear		122
+Colorcube				119
+BLUK					119
+The Enchanted Books			119
+Papa's Pizzeria To Go!			118
+BuriedTown - 				118
+Pocket Aquarium: Craziest Aquarium	118
+Ys Chronicles 1				118
+Metro 2033: Wars			118
+Doom & Destiny Advanced			117
+Return to Grisly Manor			116
+Weaphones Antiques: Firearms Simulator	116
+Campaign Manager -			116
+Wars of the Roses - RosenkÃ¶nig		116
+Hot Trigger				115
+Dark Romance: The Swan Sonata HD -	115
+Subliminal Realms: The Masterpiece HD -	115
+Flight Unlimited 2K16 - Flight Simulator115
+Snail Bob 2 Deluxe			114
+AirTycoon 4				114
+TruckSimulation 16			113
+Teenage Mutant Ninja Turtles:		113
+One Button Travel			111
+The Lost Heir 2: Forging a Kingdom	111
+Tales From Deep Space			110
+Game Studio Tycoon 2: Next Gen Developer110
+Dark Tales: Edgar Allan			109
+Redemption Cemetery:			109
+Lightbot : Programming Puzzles		108
+Incredipede				108
+oh my giraffe				106
+Paul Pixel - The Awakening		106
+Head of State				106
+Sproggiwood				105
+Mystery Tales: Her Own Eyes HD -	104
+NextGen Car Game Racing			100
+Eisenhorn: XENOS			100
+Cheats For Pokemon Go - Gameplay	99
+A Tiny Game of Pong			99
+Pocket Arcade Story			99
+Just Trap				99
+Private School Days			99
+Ask Drift0r 				97
+VR Roller-Coaster			97
+NEO TURF MASTERS	                96
+Bombsquad - Defuse the Bomb		96
+FreeFlight Mini				95
+Runestone Keeper			95
+Legend of the Skyfish			95
+Elmo Loves 123s				95
+Delicious - Emily's Tea Garden		95
+Heads Up! Kids				94
+Flow Free: Hexes			94
+Skat					94
+Zyon_RhythmGamW				93
+WonderCat Adventures			93
+The Enchanted Cave 2			92
+Choice of the Pirate			92
+Magic Tower Touch			91
+Wave					91
+Doc McStuffins: Mobile Clinic Rescue	91
+Mystery Trackers: Winterpoint Tragedy 	91
+Fear For Sale: The 13 Keys HD		90
+Either					89
+Dangerous Games: Illusionist HD 	89
+Submerged: Miku and the Sunken City	88
+Midnight Calling: Anabel 		88
+The Agency of Anomalies:		88
+Fix My Car: Custom Mods			87
+Primordia				87
+CelebrityDiagnosis!			87
+Blackwell 1: Legacy			86
+Stellar Wanderer			86
+European War 5: Empire			86
+Grim Tales: The Final Suspect 		86
+Surface: Alone in the Mist 		86
+Mystery Tales: Alaskan Wild HD 		86
+Dark Dimensions: Shadow Pirouette HD 	86
+Disc Golf Game	                        85
+Dokuro					84
+Myths of the World: Black Rose HD 	84
+The Secret Order: Beyond Time HD 	84
+A Short Tale				83
+Fear For Sale: Phantom Tide HD		83
+Sable Maze: Twelve Fears HD 		83
+Cubicle.				83
+Draw It : Mini Game			82
+Immortal Love: Letter From The Past 	82
+Surface: Return to Another World 	82
+Mystery Case Files: Ravenhearst Unlocked82
+Evo Explores				81
+BCM Surfing Game - World Surf Tour	81
+Emily Wants To Play			81
+Melody Jams				81
+Beyond: Light Advent Collector's 	81
+Asva The Monkey HD			80
+MadOut Open City			80
+Open House London 2016			80
+Guns of Infinity			80
+Agatha Christie - The ABC Murders 	80
+I Keep Having This Dream		79
+Dark Romance: Kingdom of Death 		79
+Vikings: an Archer's Journey		78
+Rugby Nations 16			78
+Stop Curry				78
+Forbidden Desert			78
+Dark Dimensions: Homecoming HD		78
+Danse Macabre: Deadly Deception 	78
+Microgue				77
+Duck Life: Retro Pack			77
+PE Servers - Custom Keyboard 		77
+Haunted Hotel: Eternity 		77
+Lea Born for Adventure			76
+Abzorb					76
+Mystic Diary: Haunted Island HD (Full)	76
+Dark Realm: Princess of Ice HD 		76
+Labyrinths of the World			76
+Bridge Constructor Stunts		75
+Dream Machine : The Game		75
+Papa's Taco Mia HD			75
+House of 1000 Doors			75
+Nevertales: Legends 			75
+Legacy of Discord - Furious Wings	74
+8-Bit RPG Creator			73
+Train Drive ATS 2			73
+Hunting USA				72
+Mystery Trackers: Nightsville Horror HD 72
+Royal Detective: Legend of The Golem 	72
+Space War HD				71
+Cut the Rope HD				71
+Small Town Terrors: Galdor's Bluff HD 	71
+The Curio Society: Eclipse over Mesina 	71
+Phantasmat: The Dread of Oakville 	71
+Chimeras: The Signs of Prophecy 	71
+Vectradius				70
+Teenage Mutant Ninja Turtles		70
+Grim Tales: Threads of Destiny 		70
+iFleeing				69
+Wars Of Warlords 			69
+Crazy Craft Mod Guide			69
+Kill the Plumber World			69
+Power Ping Pong				69
+Grim Facade: Hidden Sins 		69
+Haunted Legends: The Secret of Life 	69
+Fear for Sale: The House on Black River	69
+Witches' Legacy: Slumbering Darkness HD 69
+Thirty Days & Seven Seas		68
+All Limpy Run!				68
+Retro City Rampage DX			68
+Myths of the World: 			68
+European Mystery: Flowers of Death HD 	68
+Music Player				68
+Watch Games				67
+Block Sky War (Luck of the Draw) 	67
+Dictator 2: Evolution			67
+BMO Snaps - Adventure Time Photo Game	67
+Bus Simulator PRO 2016			67
+Hero Generations			67
+Amaranthine Voyage: The Obsidian Book 	67
+Mystery Trackers: Paxton Creek Avengers	67
+End Space VR for Cardboard		66
+Beyondium				66
+Train Kit				66
+Fear for Sale: Endless Voyage HD	66
+Dead Reckoning: Brassfield Manor 	66
+Shadow Wolf Mysteries: Tracks of Terror	66
+PuppetShow: The Face of Humanity (Full)	66
+TNNS					65
+Game Cheats - Super-Mario Universe 2 	65
+Anime Studio Story			65
+Haunted Legends: The Dark Wishes	65
+Myths of the World: The Whispering Mars	65
+I Have A Pen				65
+Pixel Cup Soccer			64
+The Secret Elevator			64
+OPERATION DRACULA			64
+Furniture Mod PE			63
+Matt Duchene's Hockey Classic		63
+Ocean Clash: A naval game 		63
+Albert & Otto				62
+ON-SEN - escape game -			62
+Lip Sync Battle App			62
+Cliff Diving Champ			61
+Fix My Truck: 4x4 Offroad Truck 	61
+YANKAI'S TRIANGLE			61
+Raildale - Railroad & Railway 		61
+Dark Tales: Edgar Allan The Tell-tale	61
+Narcos: Cartel Wars			61
+Football Manager Touch 2017		61
+Level: A Simple Puzzle Game		60
+RunGunJumpGun				60
+Shadow Blade: Reload			60
+Brick Splits				60
+Kahuna					59
+The Forgotten Room			59
+Confetti - Geofilter Design 		59
+Space Grunts				58
+Syberia 2 (FULL)			58
+Game Studio Tycoon 3  Gaming Business	58
+Dead Reckoning: The Crescent Case 	58
+Hidden Expedition: Dawn of Prosperity	58
+airweave sleep analysis			58
+ROMANCING SAGA 2			58
+Fran Bow Chapter 1			57
+Whispering Willows			57
+Off the Record: Liberty Stone		57
+Final Cut: Fame Fatale 			57
+Nukleus					57
+bloxorz					56
+Fireboy & Watergirl 2 			56
+Circa Infinity				56
+Sudoku Pro Edition			56
+Secrets of the Dark			56
+Lanota					55
+Santa Kids Hair Salon			55
+Secrets of the Dark:			55
+Football Manager Mobile 2017		55
+Eklips					54
+BMX Streets				54
+Labyrinths of the World: Forbidden Muse	54
+Moto x3m				53
+Survival: Wicked Forest			53
+Treasure Buster				53
+Redemption Cemetery: Clock of Fate	53
+Heroes of Normandie			53
+Santa Spy Cam! I Caught Santa!		52
+Minesweeper - Widget Edition		52
+Witches' Legacy: The Dark Throne HD	52
+Haunted Hotel: Phoenix 			52
+Danse Macabre: Thin Ice 		52
+Heroes of Loot 2			51
+Train Driver Journey 8			50
+Offroad 4x4 Truck Trials Parking 	50
+Moji Maker				50
+Bubble Mags				49
+Attenborough Story of Life		49
+NARUTO SHIPPUDEN: Ultimate Ninja	49
+Final Cut: Fade To Black 		49
+Tap Titans 2				48
+Burly Men at Sea			48
+Escape Game: Traps			48
+Ice Fishing Derby Premium		47
+Telepaint				47
+Mafia III: Rivals			47
+Whispered Secrets: Into the Beyond 	47
+OffRoad Drive Desert			46
+Blackwell 5: Epiphany			46
+Go Rally				46
+Fear for Sale: City of the Past HD 	46
+Sleep Attack TD				45
+Mia and me - Free the Unicorns!		45
+Note Rush: Learn Music Sight Reading 	45
+Punished Talents: Stolen Awards HD 	45
+Sea of Lies: Tide of Treachery		45
+Forged in Battle: Man at Arms		44
+White Tiles 4: Piano Master 		44
+Secrets of the Dark			44
+Spirits of Mystery: Chains of Promise 	44
+Alice in Wonderland Puzzle Golf		43
+Bob's Burgers Pinball			43
+Pixel Color Ball Fell From The Sky	43
+Egz â€“ The Origin of the Universe	43
+Ominous Objects: Phantom Reflection HD 	43
+Isoland					43
+AstrÃ¥					42
+DMBX 2 - Mountain Bike and BMX		42
+TankTrouble - Mobile Mayhem		42
+The Game - Play ... as long as you can!	41
+Dr. Oz					41
+Phantasmat: The Endless Night HD 	41
+Get 'Em					40
+CATTCH					40
+Fake GPS Location Spoofer		39
+French Belote				39
+Blitz Breaker				39
+FATAL FURY SPECIAL			39
+Odysseus: Long Way Home HD (Full)	39
+Carp Fishing Simulator			39
+Shadow Wolf Mysteries                   39				
+Fireman Sam - Fire & Rescue		38
+The Swords				38
+Pug's Quest				38
+Uber					38
+Sable Maze: Soul Catcher HD 		38
+SKYHILL					37
+minimize				37
+Football Chairman Pro			37
+Paper Monsters Recut			36
+Dig Deep!				36
+Skateboard Party 3 ft.		        36
+VR Tube - Virtual Reality 360		36
+Cloud Chasers - A Journey of Hope	36
+VERSUS: The Elite Trials		36
+NO THING - Surreal Arcade Trip		35
+Haunted Rooms: Escape VR Game 		35
+Wordalot â€“ Picture Crossword		35
+Zombie Town Story			35
+Lily - Playful Music Creation		35
+Talisman: Horus Heresy			34
+Ys Chronicles II			34
+Ominous Objects: Trail of Time HD 	34
+Moorish Kingdom				33
+French Tarot				33
+Dark Dimensions: City of Ash HD 	33
+Pointless Quiz				32
+Proton Pulse for Google Cardboard	32
+BurbuMoji				32
+Aurora - Puzzle Adventure		31
+Mr Jack Pocket				31
+EMOJIZI BOOBA				31
+Blackwell 4: Deception			31
+Glass Road				31
+Crap! I'm Broke: Out of Pocket		30
+kubic					30
+Pursuit of Light2			30
+Uber Driver				29
+The Krustashians			29
+Jeremstar box				29
+Science Girl - School Lab Super Star	29
+Water Bottle Flip Challenge		29
+Ninja Boy Adventures - Bomberman	28
+Smart Baby Shapes			28
+City Maps for Minecraft PE 		28
+Hollywood Game Night			27
+Future Warï¼šReborn			27
+Lost Journey 				27
+Highlightsâ„¢ Shapes 			27
+Escape Game: Signs			27
+Pang Adventures				27
+Shell Shock 1.5				26
+Lotto Out! - Mexican Loteria		26
+Hardcore Dirt Bike 2			26
+The Abandoned				26
+Fix My Car				26
+Escape from the frigid Igloo.		26
+Roll Turtle				25
+Baby Bottle Challenge 			25
+2-bit Cowboy Rides Again		25
+X-Tactics				25
+T-Rex Simulator				24
+Babysitter Craziness - Fun Kids Game	24
+Mountain Biker				24
+Civil War: Bloody April			24
+Dog Mendonca				24
+Dead In Bermuda				24
+Momoka: An Interplanetary Adventure	24
+Last City				23
+Parallyzed: Surreal Platform Runner	23
+Rainmaker - The Beautiful Flood		23
+Lacrosse Arena				23
+LOUD on Planet X			23
+Ellipsis - Touch. Explore. Survive.	23
+Journey of 1000 Stars			22
+At the Zoo With Grandma and Grandpa	22
+Agent Gumball - Roguelike Spy Game	22
+Runaway Toad				22
+AngerForce - Strikers			22
+Tennis Club Story			22
+Arcadecraft				21
+Moasure - the smart tape measure	21
+Puzzle Strike				21
+Bar Oasis 2 Aftertaste 01		21
+Le Havre: The Inland Port		21
+Paper Train: Traffic			20
+Goo Saga				20
+Myths of the World: Black Rose		20
+Goosebumps Night of Scares.		20
+NOT ALONE - Story of a bird		19
+Baum					19
+Tank Battle: Blitzkrieg			19
+Ice Princess Mermaid Salon		19
+Drive Simulator 2016			19
+Puzzlepops!				19
+Open Sorcery				19
+GE's eddie				19
+Super Cat Tales				19
+Final Cut: The True Escapade HD 	19
+Riff Racer: Race Your Music		18
+Into Light				18
+Flick Soccer 17				18
+Cognition Game				18
+Red 7 - play Digital Red7 Card 		18
+Scary Doll				18
+Witches' Legacy: 			18
+Shield Designer for Minecraft		17
+A New Life				17
+Small Town Terrors: Galdor's Bluff 	17
+Flipominos				17
+Survival Island 2: Dinosaur Hunter	17
+Peppa Pig: Seasons - Autumn and Winter	17
+Alchemic Maze				17
+Let Go and Let God - Doreen Virtue	17
+Demon Hunter: Chronicles from Beyond 	17
+Mud Bogger				16
+Donut vs Donut				16
+Superhero Girl Salon			16
+STEINS;GATE				16
+The End of the World by Sean Wenham	15
+Fleeing the Complex			15
+Dierks Bentley Lyric Keyboard + Emojis	15
+Dinosaur Games: Puzzle for Kids		15
+Cell Surgeon				14
+Recontact: Istanbul			14
+Lucky Block Mod for Minecraft 		14
+Archery King				14
+Sephojis Sephora Emoji 			14
+Knotmania				14
+Moto Madness				13
+GeoBots VR				13
+Book - room escape game -		13
+Phantasmat: The Endless Night 		13
+Unstoppable: Highway Truck Racing Game	13
+Stealers Steal				12
+Attack Heroes				12
+Team Drift Cats				12
+Mods Explorer â€“ for PocketMine MP	12
+Super Spy Girl Salon			12
+Toby: The Secret Mine			12
+Assault on Arnhem			12
+CombineRobot				11
+Ice Queen Prom Salon			11
+Zipâ€”Zap				11
+Hey Duggee: The Big Badge App		11
+Bob the Builderâ„¢: Build City		11
+Bret Michaels Emojis + Lyric Keyboard	11
+Boulder DashÂ® 30th Anniversary		11
+Crusader Kings: Chronicles		11
+Micromon				10
+The Collider 2				10
+Tube Heroes Racers			10
+Sinless: Remastered			10
+Shopkins: Top Trumps			10
+Jurassic VR for Google Cardboard	10
+Escape a Halloween Candy Shop		10
+Reckless Racing HD			9
+City Run London				9
+Lamper VR: Firefly Rescue		9
+Mixed Macho Arts			9
+New Star Soccer G-Story			9
+Crazy Circle				9
+First Year Demons			9
+Crazy Nursery				9
+KING OF KARTS: 				9
+Mystery Trackers: Nightsville Horror 	9
+Tiki Taka World Soccer			9
+Amaranthine Voyage			9
+Smooth Operator!			8
+Black Hole Joyrider			8
+Dinosaur Planet				8
+Tractor Crew: Operation Cleanup		8
+Magic Princess 				8
+Fear For Sale: Nightmare Cinema HD 	8
+Don't Die, Mr. Robot!			7
+The Island:Brave Heart			7
+Super SteamPuff				7
+Demi Lovato - Zombarazzie Adventure	7
+Halloween Makeover			7
+WWEmoji					7
+VR RollerCoaster for Cardboard		7
+The Lost Shield				7
+Cricket Captain 2016			7
+Soccer Sumos - Multiplayer party game!	6
+Flowing ~ Meditation & Mindfulness	6
+Civil War: Wilson's Creek		6
+Figure Skater 				6
+Civil War: 1861				6
+Smart Baby ABC Games			6
+Mystery Tales				6
+Zasa : An AI Story			5
+Fire and Fury: English Civil War	5
+Smart Baby Sorter HD 			5
+Hidden my game by mom - escape room	5
+Grim Tales: The Heir 			5
+Craft The World - Episodes Edition	4
+Ð¡luster Traffic: Parkour Trucks Pro	4
+Flud.					4
+Fold+					4
+Comblosion				4
+Amaranthine Voyage			4
+Blade of Elemental			3
+Arcane Online - Fantasy MMORPG		3
+Candy's Vacation - Beach Hotel		3
+The Snowman & The Snowdog Game		3
+Fire Fu					3
+Apestorm: Full Bananas			3
+Juju on the Beat			3
+Spoofr â€” GPS & Location Simulator	3
+My First Crush - High School Love	3
+Patchmania KIDS 			3
+Crystal Rush! Color Shoot Arcade Game	3
+Santa was in my House! 			2
+Yiannimize Racing			2
+Red Dwarf XI : The Game			2
+Clown Spotter - Find Clowns Around You	2
+Dominocity				2
+Visionn 				2
+Dikie & Dukie				2
+Cars & Vehicles Puzzle 			2
+Ducky Fuzz				1
+Pop Jump				1
+Kaiser 64				1
+Tina's Diary - Star Fever		1
+Bullet'nTunes				1
+Fear For Sale: Nightmare Cinema 	1
+Should Shoot				1
+Drop Out!				1
+myFitnessSync for Fitbit		1
+Fragment's Note				1
+Clouds & Sheep 2 Premium		1
+Lumps of Clay				0
+Daisy Chain				0
+GROWï¼šJOURNEY TO THE LIGHT		0
+What's that sound?			0
+Mystic R				0
+BrainConnect				0
+Brain IQ Test Adventure			0
+iFleeing!				0
+Devil Tower 2				0
+EggPunch 2 - adventure puzzle game	0
+Clash of Crime Mad City Full		0
+Six!					0
+Colt Express				0
+camera for filter			0
+Labo Halloween Car(4+)			0
+Asymmetric				0
+Base Invaders - For Big Narstie		0
+Demon's Rise 2: Lords of Chaos		0
+Fragment's Note2 Side:é›«		0
+Fragment's Note2 Side:é›ªæœˆ		0
+Fragment's Note -After Stories-		0
+Shapes & Colors Learning Kids Games 	0
+Green Game TimeSwapper			0
+Bibi & Tina: Pferdeabenteuer		0
+The Dance of the Little Water Drops	0
+Be-be-bears!				0
+Jurassic GO - Dinosaur Snap Adventures	0
+Hexy!					0
+Cubed Rally World			0
+Werewolf Special Package		0
+Forevolution				0
+LOST MAZE				0
+VR MUSEUM				0
+
+Inside Games, we have 3 apps with the biggest part of the users: fruit ninja classic, clear vision and mine craft. These apps are for entertainment purposes...
+
+	for business
+
+Genre					Rating count
+Scanner Pro				31912
+Splashtop Personal 			29376
+TurboScan Pro 				28388
+iScanner - 				8675
+PDF Reader Pro Edition 			7033
+InstaLogo Logo Creator - 		6263
+Tiny Scanner+ 				5611
+HotSchedules				3292
+ScanBizCards Business Card Reader	3166
+TapeACall Pro 				2951
+CamCard 				2923
+File Manager Pro App			2154
+Scanner For Me				1976
+AudioNote - Notepad and Voice Recorder	1756
+SuperCam_Pro				1399
+PDF Converter - 			1294
+Voice Translate Pro			1158
+Amaranthine Voyage:			1039
+Genius Scan+ - PDF Scanner		916
+OfficeSuite Pro (Mobile Office)		896
+Consultant Aide				881
+SamCard Pro-card reader&business card	875
+ALON Dictaphone - Voice Recorder	379
+CamCard HD -business card scanner 	319
+VPN Pro | Lifetime Proxy & Best VPN 	207
+Time tracker and Invoice - TimeTrack	169
+Awesome Voice Recorder Pro		162
+PDF Pro 2 - The ultimate PDF app	149
+FineScanner Pro 			100
+RecordOrders				41
+PDF Export 				41
+SofaScore Live Sports			39
+Timenote				11
+Mileage Log | Fahrtenbuch		8
+Messenger for WhatsApp - Pro App	6
+Xyngular Back Office			0
+
+Inside business, we have 3 apps with the biggest part of the users: Scanner, Splashtop Personal and TurboScan Pro - document & receipt scanner. These apps are for ease of handling document purposes ...
+
+For News Genre;
+
+track_name				rating_count_tot
+5-0 Radio Pro Police Scanner 		24553
+Scanner911 Pro				14345
+Daily Classifieds for iPhone		7973
+Conservative Talk Radio			2436
+PodCruncher podcast app 		2261
+Pocket Casts				1911
+News Pro - Breitbart Edition		244
+Presidential Election & Electoral 	222
+Scanner911 HD Police Radio Pro		204
+Redungeon				28
+Electoral 2016 - Create Presidential	22
+MonPetitGazon				14
+ZAKER 					0
+
+Inside News, we have 3 apps with the biggest part of the users: Radio police scanner, scanner911 and Daily classifieds. These apps are for knowing what is going on in time...
+
+For Weather Genre;
+
+track_name				rating_count_tot
+Weather Live 				28497
+NOAA Radar 				28032
+NOAA Hi-Def Radar Pro 			15809
+MyRadar Pro NOAA Weather Radar,		13915
+Dark Sky Weather			10014
+CARROT Weather - Talking Forecast Robot	4913
+Hurricane Tracker			3960
+RadarScope				3449
+Deluxe Moon Pro - Moon Phases Calendar	3312
+NOAA Weather Radio			3245
+Hurricane Tracker For iPad		2798
+Storm Shield				2516
+NOAA Weather Alerts			2293
+Hurricane Pro				2104
+WeatherPro				1572
+Weather Radio by WDT			1359
+Thermo-Hygrometer 			1043
+NOAA Snow Forecast			743
+WeatherPro for iPad			725
+NOAA World Radar â€“ Rain,		581
+Hurricane HD				353
+Wind Meter				338
+Authentic Weather			330
+SnowCast - See how much snowfall	253
+Weather Gods				187
+Snow Day Calculator			160
+Boating Weather				141
+Best Hunting Times			123
+Partly Sunny - Weather Forecasts	88
+Aeris Pulse Weather			81
+Hurricane Impact by HurricaneTrack.com	60
+Marline - Weather, Tides & Moon		55
+NOAA Hurricane Center HD		43
+NOAA Hurricane Center			31
+Forecaster: detailed NOAA forecasts	15
+Runcast - Weather for Runners		11
+Elf PetsÂ® Pup â€” The Elf 		11
+bergfex/Ski PRO				9
+Weather & Radar Pro Ad-Free		6
+UK Snow Radar				0
+
+Inside Weather, we have the biggest part of the users to be: weather live and NOAA. These apps aids people to plan...
+
+For Music;
+
+track_name	rating_count_tot
+TuneIn Radio Pro - MLB Audiobooks Podcasts Music	71609
+Tabs & Chords by Ultimate Guitar - learn and play	35045
+I Am T-Pain 2.0						32650
+Ringtone Designer Pro - Create Unlimited Ringtones,     8946
+Shazam Encore						8331
+Tempo - Metronome with Setlists				4781
+djay 2							4511
+forScore						3909
+Cleartune - Chromatic Tuner	                        3241
+OnSong							1576
+iReal Pro - Music Book & Play Along			1390
+KORG Gadget						1297
+TonalEnergy Chromatic Tuner and Metronome		1226
+Guitar Pro						1218
+Notion	                                                929
+Musicloud Pro - MP3 and FLAC Music Player 		885
+Drum Beats+ (Rhythm Metronome, Loops & Grooves Machine)	879
+FL Studio Mobile					818
+TouchOSC						782
+Tenuto							562
+Loopy HD						561
+Cesium Music Player					536
+VOX: FLAC Music Player with MP3 & Equalizer		495
+djay Pro						493
+iMaschine 2						454
+Pimp Your Sound						425
+MuseScore Songbook - Sheet Music			403
+KORG iM1						338
+Magellan						313
+Ringtones for iPhone Unlimited.				313
+Disney Karaoke: Frozen					313
+Patterning : Drum Machine				306
+Model 15						298
+Cubasis 2 - Mobile Music Creation System		297
+Guitar Suite - Metronome, Tuner, and Chords Library 	238
+LiveTunes - Live Concert Music Player			220
+Archangel Raphael Guidance - Doreen Virtue		202
+KORG Module						201
+edjing Pro DJ Music Mixer: turntable to remix MP3	153
+Galileo Organ						135
+Extreme Trucks Simulator				123
+Clashy Colors						110
+Precision Ukulele Tuner - with Chords & Metronome	105
+Real Metronome Pro					95
+AUM - Audio Mixer					79
+TunesFlow - Music Player with Equalizer			63
+KORG iDS-10						52
+Serato Remote Mini					50
+DM2 - The Drum Machine					40
+SOUND Canvas						36
+Composer's Sketchpad					33
+A high resolution music player - NePLAYER		27
+Colorpede						26
+Sorcery! 4						21
+Touch Notation						18
+Mersenne Melodic Percussion Synthesizer			17
+KQ MiniSynth						15
+SoundBow						13
+WiFox							12
+Pyware 3D Viewer					10
+VR Crazy Bike Race: Traffic Racing Free			10
+Theremin Synth - Loop, Record & Download		8
+UBiO							8
+Drillbook Next Reader					7
+InstaSave for Instagram - Download 			1
+Final Guitar - absolute guitar app			0
+A high end tuner for all instruments!@Tuner		0
+PrestoBand Guitar and Piano				0
+
+Inside Music, we have 3 apps with the biggest part of the users: tuneIn Radio, Tabs and chords, I am T-pain. These apps are for entertainment purposes...
+
+In general conclusion; 
+for free apps: These five most used apps shows that apps that help keep to time (weather and navigation), that aid a better state of mind and used as point of references (reference and music)and apps that connect people together in one way or the other are all apps that attract more users on the long run.
+
+For paid apps: The five most used shows that apps that helps with time and efficiency (weather and business and news), and apps that aid relaxation (music and games) attract more users.
+
+The apps that attract more users for both paid and free apps are apps that help ones state of mind, helps to be efficient and keep friends together .
